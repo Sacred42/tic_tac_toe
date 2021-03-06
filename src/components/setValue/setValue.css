@@ -1,0 +1,14 @@
+.area {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.X{
+    background-color: green;
+  }
+  
+.O{
+      background-color: red;
+}
+
+  
