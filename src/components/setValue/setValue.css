@@ -1,6 +1,7 @@
 .area {
-    max-width: 150px;
-    max-height: 150px;
+    margin: 40px auto;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 .X{
@@ -9,6 +10,10 @@
   
 .O{
       background-color: red;
+}
+
+.A{
+  background-color: palegoldenrod;
 }
 
   

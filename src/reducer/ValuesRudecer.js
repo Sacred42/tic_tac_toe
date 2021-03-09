@@ -20,7 +20,6 @@ const Xplayer = (state = '', action)=>{
             for(let i = 0; i < favourableValues.length; i++){ 
                let newArr = favourableValues[i].filter((elem)=> sortedValeus.includes(elem))
                if(newArr.length == 3){
-                console.log('was hehr')
                return state = 'X';
                }
                else{

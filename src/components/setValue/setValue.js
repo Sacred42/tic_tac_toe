@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { cleanup } from '@testing-library/react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Area from '../area/area';
 import './setValue.css';
 
 
 const SetValue = () =>{
+    // const area = Array.prototype.slice.call(document.querySelector('.area').children);
     let activeValue = useSelector(state => state.ValeusReducer);
     let X_PLAYER = useSelector(state => state.Xplayer);
     let O_PLAYER = useSelector(state => state.Oplayer);
@@ -13,9 +15,8 @@ const SetValue = () =>{
 
 
     useEffect(()=>{
-        if(value.length <= 0){
-            setValue(Array.prototype.slice.call(document.querySelector('.area').children));
-        }
+        draw();
+        setValue(Array.prototype.slice.call(document.querySelector('.area').children));
         if(X_PLAYER == 'X' ){
             getWinner(X_PLAYER );
         }
@@ -28,17 +29,24 @@ const SetValue = () =>{
         dispatch({type: 'VALUE_INITIAL'});
         dispatch({type : 'X_INITIAL'});
         dispatch({type: 'O_INITIAL'});
-        console.log(value);
         value.forEach((elem)=>elem.className = '');
     }
 
+    const draw = () =>{
+        setTimeout(()=>{
+            if(value.length !== 0){
+                let draw =  value.filter((elem)=> elem.className == '');
+                console.log(value);
+                if(draw.length == 0){
+                     alert('Ничья!');
+                     cleaner();    
+                }
+            }
+        }, 0)
+    }
     const getWinner = (player) =>{
         alert(`Победитель - ${player}`)
-        cleaner()
-    }
-
-    const setMark = () =>{
-        
+        cleaner();
     }
 
     const defineActive = (active, id) =>{
@@ -53,8 +61,6 @@ const SetValue = () =>{
         if(event.target.className){
             alert('Клетка занята!')
         }else{
-            // проверка на наличие класса A
-            // функ-ия для 
             event.target.classList.add(activeValue);
             defineActive(activeValue , event.target.id);
             dispatch({type: 'CHANGE_VALUE' , payload : (activeValue)});

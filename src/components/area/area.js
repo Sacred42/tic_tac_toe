@@ -6,7 +6,7 @@ const Area = (props) =>{
  const singleButton = (key , fn) =>{ // создание одного jsx элемента 
     
     return (
-        <button key={key} id={key + 1} onClick = {fn}></button>
+        <button className='' key={key} id={key + 1} onClick = {fn}></button>
     )
  }
 
